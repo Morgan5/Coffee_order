@@ -1,0 +1,28 @@
+{
+    "items": {
+            "espresso": {
+            "sizes": ["regular"],
+            "base_price": 3
+        },
+        "cappuccino": {
+            "sizes": ["regular", "large"],
+            "base_price": 3.5
+        },
+        "latte": {
+            "sizes": ["regular", "large"],
+            "base_price": 3.5
+        },
+        "flat white": {
+            "sizes": ["regular", "large"],
+            "base_price": 3.5
+        }
+    },
+    "sizes": {
+        "regular": 0,
+        "large": 0.5
+    },
+    "extras": {
+        "soy": 0.5
+    },
+    "gst": 0.1
+}
