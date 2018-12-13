@@ -1,0 +1,15 @@
+{
+    "10 percent off": {
+        "class": "percentOff",
+        "parameters": [
+            "10 percent off",
+            10
+        ]
+    },
+    "2 for 1": {
+        "class": "twoForOne",
+        "parameters": [
+            "2 for 1"
+        ]
+    }
+}

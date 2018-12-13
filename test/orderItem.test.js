@@ -7,7 +7,7 @@ describe("orderItem", function () {
 
   it("should calculate the price of a regular latte", function () {
 
-    expect(testRegularLatte.calculatePrice()).to.be.equal(3.5);
+    expect(testRegularLatte.getPrice()).to.be.equal(3.5);
 
   });
 
@@ -15,7 +15,7 @@ describe("orderItem", function () {
 
   it("should calculate the price of a large soy latte", function () {
 
-    expect(testLargeLatteSoy.calculatePrice()).to.be.equal(4.5);
+    expect(testLargeLatteSoy.getPrice()).to.be.equal(4.5);
 
   });
 
@@ -24,7 +24,7 @@ describe("orderItem", function () {
   it("should ignore extras not on the menu", function () {
 
     // Compare price of two nearly identical coffees, 1 with an offmenu extra, 1 without
-    expect(testLargeLatteSoySprinkles.calculatePrice()).to.be.equal(testLargeLatteSoy.calculatePrice());
+    expect(testLargeLatteSoySprinkles.getPrice()).to.be.equal(testLargeLatteSoy.getPrice());
 
   });
 });

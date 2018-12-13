@@ -153,3 +153,93 @@ describe("order - invalid inputs", function () {
 
   });
 });
+
+describe("order - vouchers", function () {
+
+  const testOrder = new order();
+
+  it("should add vouchers to an order", function () {
+
+    testOrder.addVoucher("10 percent off");
+    expect(testOrder.getVouchers().length).to.be.equal(1);
+
+    testOrder.addVoucher("2 for 1");
+    expect(testOrder.getVouchers().length).to.be.equal(2);
+
+    testOrder.clearOrder();
+
+  });
+
+  it("should handle a 10% off voucher", function () {
+
+    testOrder.add("cappuccino", "regular", ["soy"]);
+    expect(testOrder.total()).to.be.equal("$4.00");
+
+    testOrder.addVoucher("10 percent off");
+    expect(testOrder.total()).to.be.equal("$3.60");
+
+    testOrder.clearOrder();
+
+  });
+
+  it("should handle 2 for 1 voucher", function () {
+
+    testOrder.add("cappuccino", "large");
+    testOrder.add("flat white");
+    expect(testOrder.total()).to.be.equal("$7.50");
+
+    testOrder.addVoucher("2 for 1");
+    expect(testOrder.total()).to.be.equal("$4.00");
+
+    testOrder.clearOrder();
+
+  });
+
+  it("should handle 10% off and 2 for 1 on the same order", function () {
+
+    testOrder.add("cappuccino", "large");
+    testOrder.add("flat white");
+    expect(testOrder.total()).to.be.equal("$7.50");
+
+    testOrder.addVoucher("2 for 1");
+    testOrder.addVoucher("10 percent off");
+    expect(testOrder.total()).to.be.equal("$3.60");
+
+    testOrder.clearOrder();
+
+  });
+});
+
+describe("order - vouchers - invalid inputs", function () {
+
+  const testOrder = new order();
+
+  it("should handle invalid vouchers", function () {
+
+    testOrder.add("cappuccino", "regular", ["soy"]);
+
+    testOrder.addVoucher("bad voucher");
+    expect(testOrder.getVouchers().length).to.be.equal(0);
+
+    testOrder.addVoucher(1);
+    expect(testOrder.getVouchers().length).to.be.equal(0);
+
+    expect(testOrder.total()).to.be.equal("$4.00");
+
+    testOrder.clearOrder();
+
+  });
+
+  it("shouldn't allow multiple vouchers of the same type to be applied to an order", function () {
+
+    testOrder.add("cappuccino", "regular", ["soy"]);
+
+    testOrder.addVoucher("10 percent off");
+    expect(testOrder.getVouchers().length).to.be.equal(1);
+    testOrder.addVoucher("10 percent off");
+    expect(testOrder.getVouchers().length).to.be.equal(1);
+
+    expect(testOrder.total()).to.be.equal("$3.60");
+
+  });
+});

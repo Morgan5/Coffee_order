@@ -6,9 +6,12 @@ class orderItem {
         this.type = type;
         this.size = size;
         this.extras = extras;
+        this.price = null;
 
         // Function bindings
         this.calculatePrice = this.calculatePrice.bind(this);
+        this.getPrice = this.getPrice.bind(this);
+        this.setPrice = this.setPrice.bind(this);
     }
 
     /**
@@ -25,7 +28,26 @@ class orderItem {
             }
         });
 
-        return base + sizePrice + extrasPrice;
+        this.price = base + sizePrice + extrasPrice;
+    }
+
+    /**
+     * Returns the price of the order item
+     */
+    getPrice() {
+        // If the price hasn't been set, then calculate it
+        if (this.price === null) {
+            this.calculatePrice();
+        }
+        return this.price;
+    }
+
+    /**
+     * Set the price of the item - to be used when applying vouchers
+     * @param {number} newPrice 
+     */
+    setPrice(newPrice) {
+        this.price = newPrice;
     }
 
 }
