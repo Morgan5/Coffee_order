@@ -177,6 +177,7 @@ describe("order - vouchers", function () {
 
     testOrder.addVoucher("10 percent off");
     expect(testOrder.total()).to.be.equal("$3.60");
+    expect(testOrder.gst()).to.be.equal("$0.36");
 
     testOrder.clearOrder();
 
@@ -204,6 +205,7 @@ describe("order - vouchers", function () {
     testOrder.addVoucher("2 for 1");
     testOrder.addVoucher("10 percent off");
     expect(testOrder.total()).to.be.equal("$3.60");
+    expect(testOrder.gst()).to.be.equal("$0.36");
 
     testOrder.clearOrder();
 

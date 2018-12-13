@@ -46,3 +46,18 @@ Optional extras:
 * soy - 50c
 
 gst: 10%
+
+## Vouchers
+
+1. You can apply a voucher to your order using the `addVoucher` function and passing the name of the voucher
+    * Examples of valid input:
+        * `order.addVoucher("10 percent off")`;
+        * `order.addVoucher("2 for 1")`;
+2. Note that only one voucher of each type may be applied to an order
+
+## Voucher types
+
+| Voucher name     | effect         |
+| ---------------- | -------------- |
+| 10 percent off   | 10% of the total price of your order |
+| 2 for 1          | If you have ordered at least 2 coffees, the cheapest is free |
